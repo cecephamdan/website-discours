@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discours: Kenang-Kenangan Kocak Kita!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <style>
+        /* Desain Umum */
+        body {
+            font-family: 'Comic Neue', cursive;
+            background-color: #f7e1d7; /* Soft peach/pinkish-beige, cocok dengan gambar */
+            color: #4a3a3a; /* Dark brown/greyish for text */
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            overflow-x: hidden; /* Mencegah scroll horizontal */
+        }
+
+        /* Header */
+        header {
+            background-color: #e0947e; /* Earthy orange/terracotta, dari gambar */
+            padding: 25px; /* Sedikit lebih besar */
+            border-radius: 20px; /* Lebih bulat */
+            margin-bottom: 40px; /* Jarak lebih jauh */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); /* Bayangan lebih dalam */
+            position: relative;
+            animation: bounceIn 1s ease-out;
+            border: 4px solid #b36b5c; /* Border tebal yang selaras */
+        }
+
+        h1 {
+            font-family: 'Permanent Marker', cursive;
+            color: #fff;
+            font-size: 3.8em; /* Lebih besar lagi */
+            text-shadow: 5px 5px #a15d4d; /* Bayangan lebih tebal dan senada */
+            margin: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-sticker {
+            position: absolute;
+            width: 90px; /* Ukuran stiker header lebih besar */
+            height: 90px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 1;
+            animation: rotateAndFloat 5s infinite alternate ease-in-out;
+            filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.3)); /* Tambah bayangan pada stiker */
+        }
+
+        .sticker-left {
+            /* Path stiker di header kiri */
+            background-image: url('gambar/sticker%201.png'); 
+            top: -25px;
+            left: -25px;
+            transform: rotate(-18deg);
+        }
+
+        .sticker-right {
+            /* Path stiker di header kanan */
+            background-image: url('gambar/sticker%202.jpeg');
+            bottom: -25px;
+            right: -25px;
+            transform: rotate(22deg);
+        }
+
+        /* Galeri Kenangan */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px; /* Jarak antar item lebih lebar */
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            background-color: #fff;
+            border-radius: 25px; /* Lebih bulat */
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2); /* Bayangan lebih jelas */
+            padding: 20px; /* Padding lebih besar */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            border: 4px dashed #b36b5c; /* Border lucu senada dengan header */
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-12px) rotate(4deg); /* Efek melayang dan sedikit miring lebih dramatis */
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-item img,
+        .gallery-item video {
+            width: 100%;
+            height: 280px; /* Tinggi standar untuk semua media lebih besar */
+            object-fit: cover;
+            border-radius: 18px; /* Border media lebih bulat */
+            border: 3px solid #7a5c53; /* Border media lebih tebal dan gelap */
+        }
+
+        .gallery-item p {
+            font-size: 1.15em; /* Ukuran font lebih besar */
+            color: #5d4037;
+            margin-top: 15px; /* Jarak dari media lebih besar */
+            font-weight: bold;
+            line-height: 1.4; /* Jarak antar baris */
+        }
+
+        /* Gaya untuk Stiker di Bingkai Foto/Video */
+        .frame-sticker {
+            position: absolute;
+            width: 60px; /* Ukuran stiker di bingkai sedikit lebih besar */
+            height: 60px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 2;
+            pointer-events: none;
+            filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2)); /* Bayangan tipis pada stiker */
+        }
+
+        /* Posisi Stiker */
+        .sticker-top-left {
+            top: 8px; 
+            left: 8px;
+            transform: rotate(-15deg);
+        }
+
+        .sticker-top-right {
+            top: 8px;
+            right: 8px;
+            transform: rotate(18deg);
+        }
+
+        .sticker-bottom-left {
+            bottom: 8px;
+            left: 8px;
+            transform: rotate(8deg);
+        }
+
+        .sticker-bottom-right {
+            bottom: 8px;
+            right: 8px;
+            transform: rotate(-12deg);
+        }
+
+        .sticker-middle-top {
+            top: -20px; /* Agak keluar dari bingkai */
+            left: 50%;
+            transform: translateX(-50%) rotate(25deg);
+            width: 70px; 
+            height: 70px;
+        }
+
+        .sticker-middle-bottom {
+            bottom: -20px; /* Agak keluar dari bingkai */
+            left: 50%;
+            transform: translateX(-50%) rotate(-25deg);
+            width: 70px;
+            height: 70px;
+        }
+        
+        .sticker-side-left {
+            top: 50%;
+            left: -15px;
+            transform: translateY(-50%) rotate(-90deg);
+            width: 50px;
+            height: 50px;
+        }
+
+        .sticker-side-right {
+            top: 50%;
+            right: -15px;
+            transform: translateY(-50%) rotate(90deg);
+            width: 50px;
+            height: 50px;
+        }
+
+
+        /* Tombol Kocak */
+        .kocak-button {
+            display: inline-block;
+            background-color: #b36b5c; /* Warna tombol senada */
+            color: #fff;
+            padding: 15px 30px; /* Lebih besar */
+            border-radius: 35px; /* Lebih bulat */
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 40px; /* Jarak lebih jauh */
+            font-size: 1.3em; /* Ukuran font lebih besar */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+            border: 2px solid #7a5c53; /* Border tombol */
+        }
+
+        .kocak-button:hover {
+            background-color: #a15d4d;
+            transform: scale(1.08) rotate(-3deg);
+        }
+
+        /* Overlay Modal untuk Video */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.85); /* Sedikit lebih gelap */
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .video-modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 25px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 850px; /* Ukuran modal lebih besar */
+            box-shadow: 0 12px 25px rgba(0,0,0,0.4); /* Bayangan lebih kuat */
+            position: relative;
+            transform: scale(0.8);
+            animation: zoomIn 0.3s forwards;
+            border: 4px solid #b36b5c; /* Border modal */
+        }
+
+        .video-modal-content video {
+            width: 100%;
+            max-height: 75vh; /* Tinggi video lebih besar */
+            border-radius: 15px;
+        }
+
+        .close-button {
+            color: #7a5c53; /* Warna tombol close senada */
+            position: absolute;
+            top: 15px; /* Posisi tombol close */
+            right: 25px;
+            font-size: 40px; /* Ukuran tombol close lebih besar */
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #4a3a3a;
+            text-decoration: none;
+        }
+
+        /* Stiker acak di sekitar halaman */
+        .random-sticker {
+            position: fixed;
+            width: 70px; /* Stiker acak lebih besar */
+            height: 70px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 5;
+            animation: floatUpDown 6s infinite ease-in-out;
+            pointer-events: none;
+            filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2));
+        }
+
+        /* Animasi (tetap sama) */
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            70% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes rotateAndFloat {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(10px, -10px) rotate(10deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        @keyframes floatUpDown {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Media Queries untuk Responsif */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8em;
+            }
+            .header-sticker {
+                width: 70px;
+                height: 70px;
+            }
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            .frame-sticker {
+                width: 45px;
+                height: 45px;
+            }
+            .sticker-middle-top, .sticker-middle-bottom {
+                width: 55px;
+                height: 55px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-sticker sticker-left" style="background-image: url('gambar/sticker\ 1.png');"></div>
+        <h1>Discours: Kenang-Kenangan Kocak Kita!</h1>
+        <div class="header-sticker sticker-right" style="background-image: url('gambar/sticker\ 4.png');"></div>
+    </header>
+
+    <div class="gallery">
+        <div class="gallery-item">
+            <img src="gambar/gambar 1.jpeg" alt="Bukber Mie Ayam Zonk">
+            <div class="frame-sticker sticker-top-left" style="background-image: url('gambar/sticker%203.png');"></div>
+            <div class="frame-sticker sticker-bottom-right" style="background-image: url('gambar/sticker%204.png');"></div>
+            <p>Momen pas bukber dapet mie ayam zonk! 🍜😩</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="gambar/gambar 2.jpeg" alt="Hari Raya Idul Fitri">
+            <div class="frame-sticker sticker-top-left" style="background-image: url('gambar/sticker%205.png');"></div>
+            <p>Momen pas hari raya Idul Fitri, baju lebaran terkece! ✨🕌</p>
+        </div>
+
+        <div class="gallery-item" onclick="openVideoModal('video/Video%201.mp4')">
+            <video controls preload="none" poster="gambar/poster_joget_absurd.jpg">
+                <source src="video/Video%201.mp4" type="video/mp4">
+                Maaf, browser Anda tidak mendukung video.
+            </video>
+            <div class="frame-sticker sticker-top-right" style="background-image: url('gambar/sticker%206.png');"></div>
+            <div class="frame-sticker sticker-middle-bottom" style="background-image: url('gambar/sticker%207.png');"></div>
+            <p>Joget TikTokan pas jaman kapan itu, bikin ngakak sendiri! 🕺💃😂</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="gambar/??.jpg" alt="??">
+            <div class="frame-sticker sticker-bottom-left" style="background-image: url('gambar/sticker%208.png');"></div>
+            <p>Naon deui request coba</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="gambar/??.jpg" alt="??">
+            <div class="frame-sticker sticker-top-right" style="background-image: url('gambar/sticker%209.png');"></div>
+            <div class="frame-sticker sticker-bottom-left" style="background-image: url('gambar/sticker%2010.png');"></div>
+            <p>Naon deui request coba</p>
+        </div>
+
+        <div class="gallery-item" onclick="openVideoModal('video/parodi_iklan.mp4')">
+            <video controls preload="none" poster="gambar/poster_parodi_iklan.jpg">
+                <source src="video/??.mp4" type="video/mp4">
+                Maaf, browser Anda tidak mendukung video.
+            </video>
+            <div class="frame-sticker sticker-middle-top" style="background-image: url('gambar/sticker_lucu.png'); width: 70px; height: 70px;"></div>
+            <p>Naon deui request coba</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="gambar/??.jpg" alt="??">
+            <div class="frame-sticker sticker-top-left" style="background-image: url('gambar/sticker_polos.png');"></div>
+            <div class="frame-sticker sticker-bottom-right" style="background-image: url('gambar/sticker_devil.png');"></div>
+            <p>Naon deui request coba</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="gambar/??.jpg" alt="??">
+            <div class="frame-sticker sticker-middle-bottom" style="background-image: url('gambar/sticker_chat.png');"></div>
+            <p>Naon deui request coba</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="gambar/??.jpg" alt="??">
+            <div class="frame-sticker sticker-top-right" style="background-image: url('gambar/sticker_panik.png');"></div>
+            <div class="frame-sticker sticker-bottom-left" style="background-image: url('gambar/sticker_awas.png');"></div>
+            <p>Naon deui request coba</p>
+        </div>
+
+    </div>
+
+    <a href="#" class="kocak-button" onclick="alert('Cieee, kepo nya mau nambah apa? 😉 Nanti urang main lagi buat nambah kenangan! 😄')">
+        Mau Nambah Kenangan Kocak Lagi?
+    </a>
+
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <span class="close-button" onclick="closeVideoModal()">&times;</span>
+            <video id="modalVideo" controls autoplay></video>
+        </div>
+    </div>
+
+    <div class="random-sticker" style="top: 10%; left: 5%; background-image: url('gambar/sticker_bintang_random.png');"></div>
+    <div class="random-sticker" style="top: 25%; right: 8%; background-image: url('gambar/sticker_tertawa_random.png'); animation-delay: 1s;"></div>
+    <div class="random-sticker" style="bottom: 15%; left: 12%; background-image: url('gambar/sticker_100_random.png'); animation-delay: 2s;"></div>
+    <div class="random-sticker" style="top: 40%; left: 20%; background-image: url('gambar/sticker_aneh_random.png'); animation-delay: 0.5s;"></div>
+    <div class="random-sticker" style="bottom: 5%; right: 25%; background-image: url('gambar/sticker_party_random.png'); animation-delay: 2.5s;"></div>
+
+
+    <script>
+        function openVideoModal(videoSrc) {
+            const modal = document.getElementById('videoModal');
+            const videoPlayer = document.getElementById('modalVideo');
+            videoPlayer.src = videoSrc;
+            modal.style.display = 'flex'; // Use flex to center the modal
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const videoPlayer = document.getElementById('modalVideo');
+            videoPlayer.pause(); // Pause the video when closing
+            videoPlayer.src = ""; // Clear the src to stop loading
+            modal.style.display = 'none';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('videoModal');
+            if (event.target == modal) {
+                closeVideoModal();
+            }
+        }
+    </script>
+
+</body>
+</html>
